@@ -1,0 +1,4 @@
+name: static and dynamic code build
+on: push
+jobs:
+  

@@ -1,4 +1,20 @@
 name: static and dynamic code build
-on: push
+#on: [push]
 jobs:
+# build and deploy
+  runs-on: self-hosted
+  steps:
+    -name: check out code from github to runner
+      uses: actions/checkout@v5
+    -name: install dependecies and build
+      uses: actions/setup-node@v4
+      with: 
+        node-version:'18.x'
+      run: |
+        npm install
+        npm run build
+    -name: deploy to staging
+      run: |
+        cp $GITHUB_WORKSPACE/dist/ /var/www/html/
+        echo "deploy successful"
   

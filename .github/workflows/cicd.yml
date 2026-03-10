@@ -16,6 +16,6 @@ jobs:
           npm run build
       - name: deploy to staging
         run: |
-          cp $GITHUB_WORKSPACE/dist/ /var/www/html/
+          cp -r $GITHUB_WORKSPACE/dist/ /var/www/html/
           echo "deploy successful"
   

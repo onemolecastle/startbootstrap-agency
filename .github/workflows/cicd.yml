@@ -18,4 +18,5 @@ jobs:
         run: |
           cp -r $GITHUB_WORKSPACE/dist/ /var/www/html/
           echo "deploy successful"
+          # fixed typo
   

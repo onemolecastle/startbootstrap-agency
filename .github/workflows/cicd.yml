@@ -13,7 +13,7 @@ jobs:
       - name: install dependecies and build
         run: |
           npm install
-          npm run buid
+          npm run build
       - name: deploy to staging
         run: |
           cp $GITHUB_WORKSPACE/dist/ /var/www/html/

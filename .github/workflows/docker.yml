@@ -13,8 +13,7 @@
 
 name: docker build
 
-on:
-  push:
+on: [push]
 
 jobs:
   docker:

@@ -15,5 +15,5 @@ jobs:
           npm install
           npm run build
       - name: deploy to staging
-        run: npm run start
+        run: pm2 start scripts/start.js
   

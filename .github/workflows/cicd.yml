@@ -1,5 +1,5 @@
 name: static and dynamic code build
-on: [push]
+#on: [push]
 jobs:
   build:
     runs-on: self-hosted

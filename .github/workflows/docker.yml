@@ -16,6 +16,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          #push: true
+          #push:
           tags: user/app:latest
           file: ./Dockerfile

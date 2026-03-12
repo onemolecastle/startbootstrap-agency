@@ -6,6 +6,8 @@ jobs:
   docker:
     runs-on: self-hosted
     steps:
+      - name: verify identity
+        run: whoami
       - name: Checkout
         uses: actions/checkout@v5
       - name: Set up Docker Buildx

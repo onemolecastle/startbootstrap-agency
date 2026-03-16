@@ -37,5 +37,7 @@ jobs:
           script: |
             whoami
             echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
+            docker stop test_container || true
+            docker rm test_container || true
             docker pull ${{ vars.DOCKERHUB_USERNAME }}/startbootstrap:latest
-            docker run -d --name test_container -p 80:80 ${{ vars.DOCKERHUB_USERNAME }}/startbootstrap:latest
+            docker run -d --name test_container -p 8000:80 ${{ vars.DOCKERHUB_USERNAME }}/startbootstrap:latest

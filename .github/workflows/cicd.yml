@@ -5,7 +5,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: check out code from github to runner
         uses: actions/checkout@v5
@@ -13,18 +13,22 @@ jobs:
         uses: actions/setup-node@v4
         with: 
           node-version: '18.x'
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@<action version or sha1> # Ex: v4.1.0 or sha1, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: install dependecies and build
         run: |
           npm install
           npm run build
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6.0.0
-        with:
-          role-to-assume: arn:aws:iam::693364292887:role/github_actions_role
-          aws-region: eu-west-2
-      - name: upload to s3 bucket
-        run: |
-          aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }} --delete
+     # - name: Configure AWS Credentials
+     #   uses: aws-actions/configure-aws-credentials@v6.0.0
+     #   with:
+     #     role-to-assume: arn:aws:iam::693364292887:role/github_actions_role
+     #     aws-region: eu-west-2
+     # - name: upload to s3 bucket
+     #   run: |
+     #     aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }} --delete
         
         
         
